@@ -48,7 +48,7 @@ function displayWeatherError() {
 }
 
 function submitWeather() {
-    const cityInput = document.getElementById('cityInput').value;
+    const cityInput = document.getElementById('cityInput1').value;
     const dateInput = document.getElementById('dateInput').value;
     const descriptionInput = document.getElementById('descriptionInput').value;
     const highTempInput = parseFloat(document.getElementById('highTempInput').value);
