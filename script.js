@@ -20,15 +20,19 @@ function displayWeather(weatherData) {
     const weatherOutput = document.getElementById('weatherOutput');
     weatherOutput.innerHTML = '';
 
-    if (weatherData.length === 0) {
+    if (!Array.isArray(weatherData) || weatherData.length === 0) {
         weatherOutput.innerHTML = '<p>No forecast data available for the specified city.</p>';
         return;
     }
 
     weatherData.forEach(entry => {
+        // Check if the city name is empty
+        const cityName = entry.city.trim() !== '' ? entry.city : 'Unknown';
+
         const entryDiv = document.createElement('div');
         entryDiv.innerHTML = `
-            <p><strong>Date:</strong> ${entry.date}</p>
+            <p><strong>City:</strong> ${cityName}</p>
+            <p><strong>Date:</strong> ${new Date(entry.date).toLocaleDateString()}</p>
             <p><strong>Description:</strong> ${entry.description}</p>
             <p><strong>High Temperature:</strong> ${entry.temperature_high}°C</p>
             <p><strong>Low Temperature:</strong> ${entry.temperature_low}°C</p>
