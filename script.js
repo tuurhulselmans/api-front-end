@@ -58,8 +58,8 @@ function submitWeather() {
         temperature_low: parseFloat(lowTempInput.value)
     };
 
-    // Replace this URL with your actual weather forecast API endpoint
-    const apiUrl = 'https://your-api-domain.com/weather/';
+
+    const apiUrl = 'https://useritem-api-service-tuurhulselmans.cloud.okteto.net/forecast/';
 
     fetch(apiUrl, {
         method: 'POST',
