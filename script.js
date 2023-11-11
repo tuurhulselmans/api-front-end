@@ -62,8 +62,10 @@ function submitWeather() {
         temperature_low: parseFloat(lowTempInput.value)
     };
 
+    // Replace this URL with your actual weather forecast API endpoint
+    const apiUrl = 'https://your-api-domain.com/weather/';
 
-    const apiUrl = 'https://useritem-api-service-tuurhulselmans.cloud.okteto.net/forecast/';
+    console.log('Submitting forecast data:', forecastData);
 
     fetch(apiUrl, {
         method: 'POST',
@@ -74,10 +76,12 @@ function submitWeather() {
     })
         .then(response => response.json())
         .then(data => {
-            displayWeather(data);
+            console.log('API Response:', data);
+            // Call the displayWeather function if needed
+            // displayWeather(data);
         })
         .catch(error => {
             console.error('Error submitting weather forecast:', error);
-            displayWeatherError();
+            // Handle error, if necessary
         });
 }
