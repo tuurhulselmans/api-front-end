@@ -48,28 +48,26 @@ function displayWeatherError() {
 }
 
 function submitWeather() {
-    const cityInput = document.getElementById('cityInput');
-    const dateInput = document.getElementById('dateInput');
-    const descriptionInput = document.getElementById('descriptionInput');
-    const highTempInput = document.getElementById('highTempInput');
-    const lowTempInput = document.getElementById('lowTempInput');
+    const cityInput = document.getElementById('cityInput').value;
+    const dateInput = document.getElementById('dateInput').value;
+    const descriptionInput = document.getElementById('descriptionInput').value;
+    const highTempInput = parseFloat(document.getElementById('highTempInput').value);
+    const lowTempInput = parseFloat(document.getElementById('lowTempInput').value);
+
+    const apiUrl = 'https://useritem-api-service-tuurhulselmans.cloud.okteto.net/forecast/';
 
     const forecastData = {
-        city: cityInput.value,
-        date: dateInput.value,
-        description: descriptionInput.value,
-        temperature_high: parseFloat(highTempInput.value),
-        temperature_low: parseFloat(lowTempInput.value)
+        city: cityInput,
+        date: dateInput,
+        description: descriptionInput,
+        temperature_high: highTempInput,
+        temperature_low: lowTempInput,
     };
-
-    // Replace this URL with your actual weather forecast API endpoint
-    const apiUrl = 'https://your-api-domain.com/weather/';
-
-    console.log('Submitting forecast data:', forecastData);
 
     fetch(apiUrl, {
         method: 'POST',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(forecastData),
@@ -77,11 +75,11 @@ function submitWeather() {
         .then(response => response.json())
         .then(data => {
             console.log('API Response:', data);
-            // Call the displayWeather function if needed
-            // displayWeather(data);
+            // Handle the response as needed
         })
         .catch(error => {
             console.error('Error submitting weather forecast:', error);
-            // Handle error, if necessary
+            // Handle the error, if necessary
         });
 }
+
