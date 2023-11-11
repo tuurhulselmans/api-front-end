@@ -42,3 +42,38 @@ function displayWeatherError() {
     const weatherOutput = document.getElementById('weatherOutput');
     weatherOutput.innerHTML = '<p>Error fetching weather data. Please try again later.</p>';
 }
+
+function submitWeather() {
+    const cityInput = document.getElementById('cityInput');
+    const dateInput = document.getElementById('dateInput');
+    const descriptionInput = document.getElementById('descriptionInput');
+    const highTempInput = document.getElementById('highTempInput');
+    const lowTempInput = document.getElementById('lowTempInput');
+
+    const forecastData = {
+        city: cityInput.value,
+        date: dateInput.value,
+        description: descriptionInput.value,
+        temperature_high: parseFloat(highTempInput.value),
+        temperature_low: parseFloat(lowTempInput.value)
+    };
+
+    // Replace this URL with your actual weather forecast API endpoint
+    const apiUrl = 'https://your-api-domain.com/weather/';
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(forecastData),
+    })
+        .then(response => response.json())
+        .then(data => {
+            displayWeather(data);
+        })
+        .catch(error => {
+            console.error('Error submitting weather forecast:', error);
+            displayWeatherError();
+        });
+}

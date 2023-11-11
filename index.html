@@ -5,6 +5,53 @@
     <meta name="author" content="Tuur Hulselmans">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #weatherForm {
+            max-width: 400px;
+        }
+
+        #weatherOutput {
+            margin-top: 20px;
+        }
+
+        .weatherEntry {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
 </head>
 <body>
 <h1>Weather Forecast App</h1>
@@ -12,6 +59,25 @@
 <label for="cityInput">Enter City:</label>
 <input type="text" id="cityInput" placeholder="Enter city">
 <button onclick="getWeather()">Get Weather</button>
+
+<form id="weatherForm">
+    <label for="cityInput">Enter City:</label>
+    <input type="text" id="cityInput" placeholder="Enter city" required>
+
+    <label for="dateInput">Select Date:</label>
+    <input type="date" id="dateInput" required>
+
+    <label for="descriptionInput">Weather Description:</label>
+    <input type="text" id="descriptionInput" placeholder="Enter description" required>
+
+    <label for="highTempInput">High Temperature (°C):</label>
+    <input type="number" id="highTempInput" required>
+
+    <label for="lowTempInput">Low Temperature (°C):</label>
+    <input type="number" id="lowTempInput" required>
+
+    <button type="button" onclick="submitWeather()">Submit Forecast</button>
+</form>
 
 <div id="weatherOutput"></div>
 
